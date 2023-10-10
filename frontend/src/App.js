@@ -1,11 +1,10 @@
+import * as React from 'react';
 import Map from 'react-map-gl';
-import mapboxgl from 'mapbox-gl';
 
 function App() {
   return (
-    <div className="App">
-      <Map
-      mapboxAccessToken = {process.env.REACT_APP_MAPBOX}
+    <Map
+      mapboxAccessToken="pk.eyJ1IjoidGFseWFtIiwiYSI6ImNsbmE0Znk1cTAwN2kyanJzajI4cWF5b2oifQ.2smOlnswBobpuAwxkFHrGA"
       initialViewState={{
         longitude: -122.4,
         latitude: 37.8,
@@ -14,8 +13,29 @@ function App() {
       style={{width: 600, height: 400}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
     />
-    </div>
   );
 }
-
 export default App;
+
+// import {useState} from react;
+// import ReactMapGL from 'react-map-gl';
+
+// function App() {
+//   const [viewport, setViewport] = useState({
+//     width: 400,
+//     height: 400,
+//     latitude : 37,
+//     longitude: -122,
+//     zoom: 8
+//   });
+//   return (
+//     <div className="App">
+//      <ReactMapGL
+//      {...viewport}
+//      onViewportChange={nextViewport => setViewport(nextViewport)}
+//      />
+//     </div>
+//   );
+// }
+
+// export default App;
