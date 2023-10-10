@@ -6,11 +6,11 @@ function App() {
     <Map
       mapboxAccessToken="pk.eyJ1IjoidGFseWFtIiwiYSI6ImNsbmE0Znk1cTAwN2kyanJzajI4cWF5b2oifQ.2smOlnswBobpuAwxkFHrGA"
       initialViewState={{
-        longitude: -122.4,
-        latitude: 37.8,
-        zoom: 14
+        longitude: 35,
+        latitude: 32,
+        zoom: 7
       }}
-      style={{width: 600, height: 400}}
+      style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
     />
   );
