@@ -1,10 +1,30 @@
 import * as React from 'react';
 import Map, {Marker, Popup} from 'react-map-gl';
 // import {Room, Star} from "@material-ui/icons";
+import "./app.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 
 function App() {
 
-  return (
+  const [pins, setPins] = useState([])
+
+  useEffect(()=>{
+    const getPins = async ()=>{
+      try{
+        const res = await axios.get("/pins");
+        setPins(res.data);
+      } catch(err){
+        console.log(err)
+      }
+    };
+    getPins()
+  },[])
+
+
+
+  return (    
     <Map
       mapboxAccessToken="pk.eyJ1IjoidGFseWFtIiwiYSI6ImNsbmE0Znk1cTAwN2kyanJzajI4cWF5b2oifQ.2smOlnswBobpuAwxkFHrGA"
       initialViewState={{
@@ -15,55 +35,35 @@ function App() {
       style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
     >
-    <Marker longitude={35.2355} latitude={31.7767} color="slateblue">
-    </Marker>
-
-    <Popup longitude={35.2355} latitude={31.7767}
-        anchor="bottom"
+      {pins.map(p => (
+        <>
+          <Marker longitude={p.long} latitude={p.lat} color="slateblue">
+          </Marker>
+        </>
+      ))}
+     {/* <Popup longitude={35.2355} latitude={31.7767}
+        anchor="left"
         onClose={() => setShowPopup(false)}>
         <div className="card">
-          <lable>Place</lable>
-          <h4 className='place'>Hacotel</h4>
-          <lable>Review</lable>
-          <p>A spiritual place</p>
-          <lable>Rating</lable>
-          <div className='stars'> 5 
-            {/* <Star/>
+          <label>Place</label>
+          <h4 className='place'>Western Wall</h4>
+          <label>Review</label>
+          <p className='desc'>A spiritual place</p>
+          <label>Rating</label>
+          <div className='stars'> 5
             <Star/>
             <Star/>
             <Star/>
-            <Star/> */}
+            <Star/>
+            <Star/>
           </div>
-          <lable>Information</lable>
+          <label>Information</label>
             <span className='username'>Created by <b>Talya</b></span>
             <span className='date'>2 hour ago</span>
         </div>
-      </Popup>
+      </Popup>  */}
 
     </Map>
   );
 }
 export default App;
-
-// import {useState} from react;
-// import ReactMapGL from 'react-map-gl';
-
-// function App() {
-//   const [viewport, setViewport] = useState({
-//     width: 400,
-//     height: 400,
-//     latitude : 37,
-//     longitude: -122,
-//     zoom: 8
-//   });
-//   return (
-//     <div className="App">
-//      <ReactMapGL
-//      {...viewport}
-//      onViewportChange={nextViewport => setViewport(nextViewport)}
-//      />
-//     </div>
-//   );
-// }
-
-// export default App;
