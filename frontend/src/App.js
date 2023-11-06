@@ -4,11 +4,13 @@ import Map, {Marker, Popup} from 'react-map-gl';
 import "./app.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+// import {format} from "timeago.js";
 
 
 function App() {
 
   const [pins, setPins] = useState([])
+  const [currentPlaceId, setCurrentPlaceId] = useState(null)
 
   useEffect(()=>{
     const getPins = async ()=>{
@@ -21,8 +23,6 @@ function App() {
     };
     getPins()
   },[])
-
-
 
   return (    
     <Map
@@ -37,32 +37,44 @@ function App() {
     >
       {pins.map(p => (
         <>
-          <Marker longitude={p.long} latitude={p.lat} color="slateblue">
+          <Marker 
+            longitude={p.long} 
+            latitude={p.lat} 
+            color="slateblue"
+            onClick={e => {
+              e.originalEvent.stopPropagation();
+              setCurrentPlaceId(p._id);}}
+          >
           </Marker>
+
+          {p._id === currentPlaceId && (
+          <Popup 
+            longitude={p.long} 
+            latitude={p.lat}
+            anchor="left"
+            onClose={() => setCurrentPlaceId(null)}>
+            <div className="card">
+              <label>Place</label>
+              <h4 className='place'>{p.title}</h4>
+              <label>Review</label>
+              <p className='desc'>{p.desc}</p>
+              <label>Rating</label>
+              <div className='stars'> 5
+                {/* <Star/>
+                <Star/>
+                <Star/>
+                <Star/>
+                <Star/> */}
+              </div>
+              <label>Information</label>
+                <span className='username'>Created by <b>{p.username}</b></span>
+                <span className='date'>123</span> 
+                {/* {format(p.createdAt)} */}
+            </div>
+          </Popup> 
+          )}
         </>
       ))}
-     {/* <Popup longitude={35.2355} latitude={31.7767}
-        anchor="left"
-        onClose={() => setShowPopup(false)}>
-        <div className="card">
-          <label>Place</label>
-          <h4 className='place'>Western Wall</h4>
-          <label>Review</label>
-          <p className='desc'>A spiritual place</p>
-          <label>Rating</label>
-          <div className='stars'> 5
-            <Star/>
-            <Star/>
-            <Star/>
-            <Star/>
-            <Star/>
-          </div>
-          <label>Information</label>
-            <span className='username'>Created by <b>Talya</b></span>
-            <span className='date'>2 hour ago</span>
-        </div>
-      </Popup>  */}
-
     </Map>
   );
 }
