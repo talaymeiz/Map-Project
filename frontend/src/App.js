@@ -9,8 +9,10 @@ import { useEffect, useState } from "react";
 
 function App() {
 
+  const currentUser = "Talya"
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
+  const [newPlace, setNewPlace] = useState(null)
 
   useEffect(()=>{
     const getPins = async ()=>{
@@ -24,6 +26,17 @@ function App() {
     getPins()
   },[])
 
+  const handleAddClick = (e) => {    
+    // const [long, lat] = e.lngLat;
+    const long = e.lngLat.lng;
+    const lat = e.lngLat.lat;
+    setNewPlace({
+      lat,
+      long,
+    });
+    // console.log(newPlace.long)
+  };
+
   return (    
     <Map
       mapboxAccessToken="pk.eyJ1IjoidGFseWFtIiwiYSI6ImNsbmE0Znk1cTAwN2kyanJzajI4cWF5b2oifQ.2smOlnswBobpuAwxkFHrGA"
@@ -34,13 +47,14 @@ function App() {
       }}
       style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
+      onDblClick={handleAddClick}
     >
       {pins.map(p => (
         <>
           <Marker 
             longitude={p.long} 
             latitude={p.lat} 
-            color="slateblue"
+            color={currentUser === p.username ? "tomato" : "slateblue"}
             onClick={e => {
               e.originalEvent.stopPropagation();
               setCurrentPlaceId(p._id);}}
@@ -52,7 +66,8 @@ function App() {
             longitude={p.long} 
             latitude={p.lat}
             anchor="left"
-            onClose={() => setCurrentPlaceId(null)}>
+            onClose={() => setCurrentPlaceId(null)}
+            >
             <div className="card">
               <label>Place</label>
               <h4 className='place'>{p.title}</h4>
@@ -75,6 +90,16 @@ function App() {
           )}
         </>
       ))}
+      {newPlace && (
+      <Popup
+        longitude={newPlace.long} 
+        latitude={newPlace.lat}
+        anchor="left"
+        onClose={() => setNewPlace(null)}
+        > 
+        hello        
+      </Popup>
+      )}
     </Map>
   );
 }
