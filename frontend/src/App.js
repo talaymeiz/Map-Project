@@ -53,6 +53,7 @@ function App() {
       style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       onDblClick={handleAddClick}
+      transitionDuration="200" // not working
     >
       {pins.map(p => (
         <>
@@ -102,7 +103,23 @@ function App() {
         anchor="left"
         onClose={() => setNewPlace(null)}
         > 
-        hello        
+        <div>
+          <form>
+            <label>Title</label>
+            <input placeholder="Enter a title"/>
+            <label>Review</label>
+            <textarea placeholder="Tell us something about this place"/>
+            <label>Rating</label>
+            <select>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button className="submitButton" type="submit">Add Pin</button>
+          </form>
+          </div>        
       </Popup>
       )}
     </Map>
