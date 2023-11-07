@@ -13,6 +13,11 @@ function App() {
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
   const [newPlace, setNewPlace] = useState(null)
+  const [viewState, setViewState] = useState({
+    longitude: 35,
+    latitude: 32,
+    zoom: 6
+  });
 
   useEffect(()=>{
     const getPins = async ()=>{
@@ -26,25 +31,25 @@ function App() {
     getPins()
   },[])
 
+  const handleMarkerClick = (id,lat,long) => {
+    setCurrentPlaceId(id);
+    setViewState({longitude:long, latitude:lat, zoom:6}) 
+  };
+
   const handleAddClick = (e) => {    
-    // const [long, lat] = e.lngLat;
     const long = e.lngLat.lng;
     const lat = e.lngLat.lat;
     setNewPlace({
       lat,
       long,
     });
-    // console.log(newPlace.long)
   };
 
   return (    
     <Map
       mapboxAccessToken="pk.eyJ1IjoidGFseWFtIiwiYSI6ImNsbmE0Znk1cTAwN2kyanJzajI4cWF5b2oifQ.2smOlnswBobpuAwxkFHrGA"
-      initialViewState={{
-        longitude: 35,
-        latitude: 32,
-        zoom: 6
-      }}
+      {...viewState}
+      onMove={evt => setViewState(evt.viewState)}
       style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       onDblClick={handleAddClick}
@@ -57,7 +62,7 @@ function App() {
             color={currentUser === p.username ? "tomato" : "slateblue"}
             onClick={e => {
               e.originalEvent.stopPropagation();
-              setCurrentPlaceId(p._id);}}
+              handleMarkerClick(p._id,p.lat,p.long);}}
           >
           </Marker>
 
