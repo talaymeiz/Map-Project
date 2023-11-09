@@ -4,12 +4,13 @@ import Map, {Marker, Popup} from 'react-map-gl';
 import "./app.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Register from "./components/Register";
 // import {format} from "timeago.js";
 
 
 function App() {
 
-  const currentUser = "Moshe"
+  const [currentUser, setCurrentUser] = useState(null)
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
   const [newPlace, setNewPlace] = useState(null)
@@ -147,6 +148,7 @@ function App() {
           <button className="button register">register</button>
         </div>
       )}
+      <Register/>
     </Map>
   );
 }
