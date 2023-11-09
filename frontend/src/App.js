@@ -9,13 +9,13 @@ import { useEffect, useState } from "react";
 
 function App() {
 
-  const currentUser = "Talya"
+  const currentUser = "Moshe"
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
   const [newPlace, setNewPlace] = useState(null)
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
-  const [rateing, setRateing] = useState(0);
+  const [rat, setRateing] = useState(0);
   const [viewState, setViewState] = useState({
     longitude: 35,
     latitude: 32,
@@ -54,7 +54,7 @@ function App() {
       username: currentUser,
       title,
       desc,
-      rateing,
+      rat,
       lat: newPlace.lat,
       long: newPlace.long,
     };
@@ -103,13 +103,7 @@ function App() {
               <label>Review</label>
               <p className='desc'>{p.desc}</p>
               <label>Rating</label>
-              <div className='stars'> 5
-                {/* <Star/>
-                <Star/>
-                <Star/>
-                <Star/>
-                <Star/> */}
-              </div>
+              <div className='stars'>{p.rat}</div>
               <label>Information</label>
                 <span className='username'>Created by <b>{p.username}</b></span>
                 <span className='date'>123</span> 
@@ -144,6 +138,14 @@ function App() {
           </form>
           </div>        
       </Popup>
+      )}
+      {currentUser ? (
+        <button className="button logout">log out</button>
+      ) : (
+        <div className="buttons">
+          <button className="button login">log in</button>
+          <button className="button register">register</button>
+        </div>
       )}
     </Map>
   );
