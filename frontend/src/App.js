@@ -5,6 +5,7 @@ import "./app.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Register from "./components/Register";
+import Login from "./components/Login";
 // import {format} from "timeago.js";
 
 
@@ -17,6 +18,8 @@ function App() {
   const [title, setTitle] = useState(null);
   const [desc, setDesc] = useState(null);
   const [rat, setRateing] = useState(0);
+  const [showRegister, setShowRegister] = useState(false);  
+  const [showLogin, setShowLogin] = useState(false);  
   const [viewState, setViewState] = useState({
     longitude: 35,
     latitude: 32,
@@ -144,11 +147,12 @@ function App() {
         <button className="button logout">log out</button>
       ) : (
         <div className="buttons">
-          <button className="button login">log in</button>
-          <button className="button register">register</button>
+          <button className="button login" onClick={()=>setShowLogin(true)}>log in</button>
+          <button className="button register" onClick={()=>setShowRegister(true)}>register</button>
         </div>
       )}
-      <Register/>
+      {showRegister && <Register setShowRegister={setShowRegister}/>}
+      {showLogin && <Login setShowLogin={setShowLogin}/>}
     </Map>
   );
 }

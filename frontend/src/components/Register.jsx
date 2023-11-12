@@ -2,11 +2,12 @@ import "./register.css"
 import Grid from "@mui/material/Grid";
 //import Typography from "@mui/material/Typography";
 import RoomSharpIcon from '@mui/icons-material/RoomSharp';
+import ClearSharpIcon from '@mui/icons-material/ClearSharp';
 import { useRef, useState } from "react";
 import axios from "axios";
 
 
-export default function Register() {
+export default function Register({ setShowRegister }) {
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
@@ -32,6 +33,10 @@ export default function Register() {
     }
   }
 
+  const falseRegister = ()=> {
+    setShowRegister(false)
+  }
+
   return (
     <div className="registerContainer">
         <div className="logo">
@@ -48,6 +53,9 @@ export default function Register() {
           {success && <span className="success">Successfull. You can login now</span>}
           {error && <span className="failure">Something went wrong</span>}
         </form>
+        <Grid item xs={1}>
+            <ClearSharpIcon className="registerCancel" onClick={falseRegister}/>
+          </Grid>
     </div>
   )
 }
