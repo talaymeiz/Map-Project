@@ -27,8 +27,6 @@ export default function Register({ setShowRegister }) {
       setError(false);
       setSuccess(true)
     }catch(err){
-      console.log(err)
-      console.log(newUser.username)
       setError(true);
     }
   }
@@ -39,7 +37,7 @@ export default function Register({ setShowRegister }) {
 
   return (
     <div className="registerContainer">
-        <div className="logo">
+        <div className="logoR">
           <Grid item xs={1}>
             <RoomSharpIcon/>
           </Grid>
