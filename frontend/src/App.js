@@ -10,7 +10,7 @@ import Login from "./components/Login";
 
 
 function App() {
-
+  const myStorage = window.localStorage;
   const [currentUser, setCurrentUser] = useState(null)
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
@@ -72,6 +72,12 @@ function App() {
     }
   };
 
+  // handle the logout butten
+  const handleLogout = () =>{
+    myStorage.removeItem("user")
+    setCurrentUser(null)
+  }
+
   return (    
     <Map
       mapboxAccessToken="pk.eyJ1IjoidGFseWFtIiwiYSI6ImNsbmE0Znk1cTAwN2kyanJzajI4cWF5b2oifQ.2smOlnswBobpuAwxkFHrGA"
@@ -110,7 +116,7 @@ function App() {
               <div className='stars'>{p.rat}</div>
               <label>Information</label>
                 <span className='username'>Created by <b>{p.username}</b></span>
-                <span className='date'>123</span> 
+                <span className='date'>change</span> 
                 {/* {format(p.createdAt)} */}
             </div>
           </Popup> 
@@ -144,7 +150,7 @@ function App() {
       </Popup>
       )}
       {currentUser ? (
-        <button className="button logout">log out</button>
+        <button className="button logout" onClick={handleLogout}>log out</button>
       ) : (
         <div className="buttons">
           <button className="button login" onClick={()=>setShowLogin(true)}>log in</button>
@@ -152,7 +158,7 @@ function App() {
         </div>
       )}
       {showRegister && <Register setShowRegister={setShowRegister}/>}
-      {showLogin && <Login setShowLogin={setShowLogin}/>}
+      {showLogin && <Login setShowLogin={setShowLogin} myStorage={myStorage} setCurrentUser={setCurrentUser}/>}
     </Map>
   );
 }

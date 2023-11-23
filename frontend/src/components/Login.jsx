@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import axios from "axios";
 
 
-export default function Login({ setShowLogin }) {
+export default function Login({ setShowLogin,myStorage,setCurrentUser }) {
 
   const [error, setError] = useState(false);
   const nameRaf = useRef()
@@ -14,12 +14,15 @@ export default function Login({ setShowLogin }) {
 
   const habdleSubmit= async (e) => {
     e.preventDefault();
-    const newUser = {
+    const user = {
       username : nameRaf.current.value,
       password : passwordRaf.current.value,
     };
     try{
-      await axios.post("/users/register", newUser);
+      const res = await axios.post("/users/login", user);
+      myStorage.setItem("user", res.data.username)
+      setCurrentUser(res.data.username)
+      setShowLogin(false)
       setError(false);
     }catch(err){
       setError(true);
