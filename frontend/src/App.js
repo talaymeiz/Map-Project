@@ -6,12 +6,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
-// import {format} from "timeago.js";
+import {format} from "timeago.js";
+import StarIcon from '@mui/icons-material/Star';
 
 
 function App() {
   const myStorage = window.localStorage;
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState(myStorage.getItem("user"))
   const [pins, setPins] = useState([])
   const [currentPlaceId, setCurrentPlaceId] = useState(null)
   const [newPlace, setNewPlace] = useState(null)
@@ -21,9 +22,9 @@ function App() {
   const [showRegister, setShowRegister] = useState(false);  
   const [showLogin, setShowLogin] = useState(false);  
   const [viewState, setViewState] = useState({
-    longitude: 35,
-    latitude: 32,
-    zoom: 6
+    longitude: 23,
+    latitude: 47,
+    zoom: 4
   });
 
   useEffect(()=>{
@@ -40,7 +41,7 @@ function App() {
 
   const handleMarkerClick = (id,lat,long) => {
     setCurrentPlaceId(id);
-    setViewState({longitude:long, latitude:lat, zoom:6}) 
+    setViewState({longitude:long, latitude:lat, zoom:5}) 
   };
 
   const handleAddClick = (e) => {    
@@ -52,13 +53,14 @@ function App() {
     });
   };
 
+  //when user add new pin
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPin = {
       username: currentUser,
       title,
       desc,
-      rat,
+      rat: rat,
       lat: newPlace.lat,
       long: newPlace.long,
     };
@@ -86,7 +88,6 @@ function App() {
       style={{width: "100vw", height: "100vh"}}
       mapStyle="mapbox://styles/mapbox/streets-v9"
       onDblClick={handleAddClick}
-      transitionDuration="200" // not working
     >
       {pins.map(p => (
         <>
@@ -113,11 +114,12 @@ function App() {
               <label>Review</label>
               <p className='desc'>{p.desc}</p>
               <label>Rating</label>
-              <div className='stars'>{p.rat}</div>
+              <div className="stars">
+                {Array(p.rat).fill(<StarIcon className="star" />)}
+              </div>
               <label>Information</label>
                 <span className='username'>Created by <b>{p.username}</b></span>
-                <span className='date'>change</span> 
-                {/* {format(p.createdAt)} */}
+                <span className='date'>{format(p.createdAt)}</span> 
             </div>
           </Popup> 
           )}
@@ -158,7 +160,7 @@ function App() {
         </div>
       )}
       {showRegister && <Register setShowRegister={setShowRegister}/>}
-      {showLogin && <Login setShowLogin={setShowLogin} myStorage={myStorage} setCurrentUser={setCurrentUser}/>}
+      {showLogin && <Login setShowLogin={setShowLogin} myStorage={myStorage} setCurrentUser={setCurrentUser} />}
     </Map>
   );
 }

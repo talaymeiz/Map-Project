@@ -12,6 +12,7 @@ export default function Login({ setShowLogin,myStorage,setCurrentUser }) {
   const nameRaf = useRef()
   const passwordRaf = useRef()
 
+  //when click on login butten
   const habdleSubmit= async (e) => {
     e.preventDefault();
     const user = {
@@ -20,7 +21,7 @@ export default function Login({ setShowLogin,myStorage,setCurrentUser }) {
     };
     try{
       const res = await axios.post("/users/login", user);
-      myStorage.setItem("user", res.data.username)
+      myStorage.setItem("user", res.data.username) 
       setCurrentUser(res.data.username)
       setShowLogin(false)
       setError(false);
@@ -28,6 +29,7 @@ export default function Login({ setShowLogin,myStorage,setCurrentUser }) {
       setError(true);
     }
   }
+
   const falseLogin = ()=> {
     setShowLogin(false)
   }
@@ -47,8 +49,8 @@ export default function Login({ setShowLogin,myStorage,setCurrentUser }) {
           {error && <span className="failure">Something went wrong</span>}
         </form>
         <Grid item xs={1}>
-            <ClearSharpIcon className="loginCancel" onClick={falseLogin}/>
-          </Grid>
+          <ClearSharpIcon className="loginCancel" onClick={falseLogin}/>
+        </Grid>
     </div>
   )
 }
