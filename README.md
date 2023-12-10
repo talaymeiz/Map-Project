@@ -1,9 +1,8 @@
 # Map-Project
 
-
-![map_image](MAP2.jpg)
-</a>
-</div>
+<p align="center">
+  <img src="MAP2.jpg">
+</p>
 
 Welcome to Travel-Map, Social Networking Platform: A unique network centered around travel experiences.
 an open-source web application that provides you with the ability to travel, pin your location and share your reviews with other users.
