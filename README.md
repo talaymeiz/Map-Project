@@ -1,5 +1,6 @@
 # Map-Project
 
+<div align='center'>
 ![map_image](MAP.jpg)
 </a>
 </div>
