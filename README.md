@@ -1,6 +1,6 @@
 # Map-Project
 
-![map_image](MAP.jpg)
+![map_image](MAP2.jpg)
 </a>
 </div>
 
