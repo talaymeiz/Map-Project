@@ -1,6 +1,6 @@
 # Map-Project
 
-![map_image](C:\Users\talia\Desktop\react\maping-project\MAP.jpg)
+![map_image](MAP.jpg)
 </a>
 </div>
 
