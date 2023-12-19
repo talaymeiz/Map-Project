@@ -14,14 +14,13 @@ Technologies Used: React.js, MongoDB, Mapbox, react-map-gl.<br>
 Development Focus: Combines front-end and back-end web development skills.<br>
 Programming Language: Leveraging JavaScript and Node.js for a seamless experience. CSS for the view.<br>
 
+Experience the app in action by watching the [Travel Map Video](https://www.youtube.com/watch?v=OH2ONU8T0nY).
+
 ## Table of Contents
 
 - [Overview](#overview)
 - [Technology Stack](#technology-stack)
 - [Features](#features)
-- [Getting Started](#getting-started)
-- [Environment Variable](#environment-variable)
-- [Usage](#usage)
 
 ## Overview
 
@@ -47,23 +46,10 @@ The stack includes Node.js with Express for the server, Mongoose for MongoDB int
 
 ### Features
 
-Register and Login Components: These are custom components used for user registration and login.
+- **Register:** If you are not a registered user, you can register for the system by providing your name, email, and password before starting to use the application. The registration is a one-time process.<br> 
 
-- **enrollment** 
+- **login/logout** Following the registration process, you can log into the system. While actively using the application, it recognizes your user status, enabling it to operate according to your account. Exclusive to the login mode, you have the capability to append new pins, and these pins are uniquely distinguished. Upon completing your use of the application, you have the option to log out.
 
-- **entry/exit** 
+- **Adding a new location** By double-clicking on the map at a certain location, you can add a new pin. Provide a description, rate it, and share it with fellow users.
 
-- **Adding a new location** 
-
-- **Location viewing** 
-
-## Getting Started
-
-**install locally:**
-
-
-## Environment Variable
-
-
-## Usage
-
+- **Location viewing** Clicking on the symbol of an already placed pin on the map will trigger a window to open, displaying detailed information about that specific location.
