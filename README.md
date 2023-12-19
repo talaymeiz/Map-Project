@@ -4,14 +4,15 @@
   <img src="MAP2.jpg">
 </p>
 
-Welcome to Travel-Map, Social Networking Platform: A unique network centered around travel experiences.
-an open-source web application that provides you with the ability to travel, pin your location and share your reviews with other users.
-Personal Travel Insights: Share and discover recommendations based on real experiences.
-Community-Driven Recommendations: Like/dislike feature to gauge popularity of destinations.
-Trip Inspiration Source: Ideal for finding new travel spots or sharing hidden gems.
-Technologies Used: React.js, MongoDB, Mapbox, react-map-gl.
-Development Focus: Combines front-end and back-end web development skills.
-Programming Language: Leveraging JavaScript and Node.js for a seamless experience. CSS for the view.
+Welcome to Travel-Map, Social Networking Platform: A unique network centered around travel experiences.<br>
+an open-source web application that provides you with the ability to travel, pin your location and share your reviews with other users.<br>
+Personal Travel Insights: Share and discover recommendations based on real experiences.<br>
+Community-Driven Recommendations: Like/dislike feature to gauge popularity of destinations.<br>
+Trip Inspiration Source: Ideal for finding new travel spots or sharing hidden gems.<br>
+Travel Map project is developed using JavaScript.<br>
+Technologies Used: React.js, MongoDB, Mapbox, react-map-gl.<br>
+Development Focus: Combines front-end and back-end web development skills.<br>
+Programming Language: Leveraging JavaScript and Node.js for a seamless experience. CSS for the view.<br>
 
 ## Table of Contents
 
@@ -28,13 +29,25 @@ I have a strong passion for exploring and gathering experiences in different cor
 
 ### Technology Stack
 
-- **Frontend:** 
+- **Frontend:**
+React: A JavaScript library for building user interfaces.<br>
+react-map-gl: A React wrapper for Mapbox GL JS, a library for embedding interactive, customizable maps.<br>
+axios: A promise-based HTTP client for making requests to the server.<br>
+@mui/icons-material: Icons from the Material-UI library used for displaying star icons.<br>
+The code integrates with Mapbox for rendering the map and markers. It communicates with a server to fetch and update data related to pins on the map using Axios for HTTP requests. The state is managed using React hooks, and the application includes components for user registration and login.<br>
 
 - **Backen:**
+  Express.js: A web application framework for Node.js used to create the server.<br>
+Mongoose: An Object Data Modeling (ODM) library for MongoDB and Node.js. It simplifies interactions with MongoDB databases.<br>
+MongoDB: A NoSQL database used to store the data.<br>
+bcrypt: A library for hashing and salting passwords securely.<br>
+The stack includes Node.js with Express for the server, Mongoose for MongoDB interactions, bcrypt for password hashing, and MongoDB as the database. The code structure follows a RESTful API design with separate routes for pins and users.<br>
 
-- **view:** 
+- **view:** CSS.
 
 ### Features
+
+Register and Login Components: These are custom components used for user registration and login.
 
 - **enrollment** 
 
